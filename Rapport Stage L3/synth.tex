@@ -1,0 +1,78 @@
+
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} %
+\usepackage[T1]{fontenc} %
+%\usepackage[latin1]{inputenc} %
+\usepackage{a4wide} %
+\usepackage{palatino} %
+
+\let\bfseriesbis=\bfseries \def\bfseries{\sffamily\bfseriesbis}
+
+
+\newenvironment{point}[1]%
+{\subsection*{#1}}%
+{}
+
+\setlength{\parskip}{0.3\baselineskip}
+
+\begin{document}
+
+\title{Résolution du problème du labyrinthe par apprentissage par renforcement avec un réseau neuronal - Extraction d'un réseau de neurones des équations de Navier-Stokes}
+
+\author{étudiant : YAX Nicolas\\maître de stage : PREUX Philippe\\équipe SequeL, INRIA Lille Nord-Europe}
+
+\date{25/07}
+
+\maketitle
+
+\pagestyle{empty} %
+\thispagestyle{empty}
+
+%% Attention: pas plus d'un recto-verso!
+
+
+\begin{point}{Le contexte général}
+  
+
+\end{point}
+
+\begin{point}{Le problème étudié}
+
+Il s'agit de résoudre un labyrinthe vu par dessus par apprentissage par renforcement. De plus, il va falloir utiliser un réseau de neurones afin d'améliorer les performances en cas de très grand labyrinthe. Actuellement on sait déjà résoudre ce problème mais le fait d'utiliser un réseau neuronal donne de moins bonnes performances que en utilisant des tableaux pour stocker les données. Il va donc falloir trouver un moyen de faire mieux. Ce sujet est interessant car il permet de voir les limites de ce que les réseaux de neurones classiques peuvent faire et comment essayer de dépasser ces limites. Je me suis donc intéréssé à différentes façons originales et inédites de faire en essayant notamment de créer à la main un nouveau type de neurone capable de résoudre le problème posé de manière bien plus efficace que les neurones classiques.
+\end{point}
+
+\begin{point}{La contribution proposée}
+Pour résoudre ce problème, je me suis intéréssé à la résolution de labyrinthe par la mécanique des fluides (équations de Navier-Stokes). J'en ai tiré de nouvelles équations faites pour un environnement discret ainsi qu'une stratégie de résolution de ces équations. Ceci m'a permis de construire un réseau de neurones effectuant localement (c'est à dire sans propagation) les calculs permettant de résoudre ces équations et donc de résoudre le labyrinthe.
+
+  Qu'avez vous propos? comme solution ? cette question? Attention, pas
+  de technique, seulement les grandes id?es! Soignez particuli?rement
+  la description de la d?marche \emph{scientifique}.
+ 
+\end{point}
+
+\begin{point}{Les arguments en faveur de sa validité}
+Cette méthode permet un énorme gain en nombre de pas dans le labyrinthe pour apprendre la solution ainsi que un gain en espace comparé aux réseaux de neurones utilisés courament en apprentissage par renforcement.
+  Qu'est-ce qui montre que cette solution est une bonne solution? Des
+  exp?riences, des corollaires? Commentez la \emph{stabilit?} de votre
+  proposition: comment la validit? de la solution d?pend-elle des
+  hypoth?ses de travail?
+
+\end{point}
+
+
+\begin{point}{Le bilan et les perspectives}
+  
+  Et apr?s? En quoi votre approche est-elle g?n?rale? Qu'est-ce que
+  votre contribution a apport? au domaine? Que faudrait-il faire
+  maintenant? Quelle est la bonne \emph{prochaine} question?
+
+\end{point}
+
+
+\end{document}
+
+
+
+
