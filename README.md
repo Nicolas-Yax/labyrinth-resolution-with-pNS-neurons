@@ -6,4 +6,6 @@ To test the labyrinth_Navier_solver you can use a labyrinth generator as your co
 
 You'll need matplotlib library so as to visualise the trajectory of the agent.
 
+I've said in my report I would put online the database with 25k labyrinths but the file is too big to put it on github. So I put an other file with labyrinths with different dimensions. You can obviously use the generator to create other labyrinths.
+
 My mail address if you have questions or if something is not working correctly : nicolas.yax@ens-paris-saclay.fr
