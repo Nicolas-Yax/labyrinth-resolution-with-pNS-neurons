@@ -311,6 +311,3 @@ for j in range(1,61):
 
 print(RES)
 """
-_file = open("data_pNS_maze1.result","w")
-_file.write(str(RES))
-_file.close()
