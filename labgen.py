@@ -8,8 +8,8 @@ from matplotlib import animation
 import collections
 
 COUNT = 0
-
 def labgen(height,width):
+	#Returns a labyrinth with input dimensions
 	tab = [[1 for i in range(height)] for j in range(width)]
         free_pos = {(2*i,2*j):(i+j) for i in range(height//2) for j in range(width//2)}
 	path = {}
@@ -136,7 +136,11 @@ def labgen(height,width):
 		step(next_pos)
 	#print_tab()
 	return tab
-
+#----------------------------------------------------------
+#
+#	Generation of labyrinths and creation of the db
+#
+#----------------------------------------------------------
 def gen(nb):
         width = 25
         height = 25
