@@ -79,13 +79,13 @@ N = 0
 START = (1,1) #Start position
 END = (25,25) #BE CAREFULL !!! This position MUST be accessible or the algorithme will never find it !
 
-SCORE = [] #Only to store values in a database
-NB_STEP = 0
+SCORE = [] #Only to store values in a database to print them after
+NB_STEP = 0 #Number of steps in the maze (for the database)
 
-def solve(pos,ancient_pos): #Solve the pNS Equation it needs the current position and the previous one
+def solve(pos,ancient_pos): #Solve the pNS Equation (cf report or you won't understand anything) it needs the current position and the previous one
     (x,y) = pos
     (ax,ay) = ancient_pos
-    #List of all possible next position
+    #List of all possible next position without the previous position
     list_new_pos = [(x+a,y+b,a+b,b) for a,b in move_list()
                     if allowed_pos(x+a,y+b)
                     and not(is_obstacle(x+a,y+b))
@@ -96,18 +96,18 @@ def solve(pos,ancient_pos): #Solve the pNS Equation it needs the current positio
                         if allowed_pos(x+a,y+b)
                         and not(is_obstacle(x+a,y+b))
                         and (x+a,y+b) == ancient_pos]
-    ddiv = 0-sum([(a+b)*access(x+a,y+b)[b] for a,b in move_list()]) #Computation of ddiv
-    (a,b,g,h) = (access(x+1,y)[0],access(x-1,y)[0],access(x,y+1)[1],access(x,y-1)[1])
+    ddiv = 0-sum([(a+b)*access(x+a,y+b)[b] for a,b in move_list()]) #Computation of ddiv (cf report)
+    (a,b,g,h) = (access(x+1,y)[0],access(x-1,y)[0],access(x,y+1)[1],access(x,y-1)[1]) #Easier notations
     if (x,y) == START: #The value of div
         ddiv += 1.0
     elif (x,y) == END:
         ddiv -= 1.0
     elif not(a or b or g or h): #Lost case (shouldn't occur)
         ddiv += 0
-    #Computation of the sum factor
+    #Computation of the sum factor (cf report)
     somme = sum([abs(access(i,j)[index]) for (i,j,s,index) in list_new_pos])
     
-    #Correct self div organelle and correct other div organelle
+    #Correct self div organelle and correct other div organelle (cf report)
     for (i,j,s,index) in list_new_pos:
         v = access(i,j)[index]
         if somme != 0:
@@ -146,33 +146,35 @@ def solve(pos,ancient_pos): #Solve the pNS Equation it needs the current positio
     deviation = nu1*((-g*vy>=0)*vy*epsilon + (-h*vy>=0)*vy*epsilon - (-a*vx>=0)*vx*(1-epsilon) - (-b*vx>=0)*vx*(1-epsilon))
     vx += deviation*svx*svy
     vy -= deviation*svy*svx
+    #This factor isn't in the report, it's a detail to slightly improve the algorithm
     eta = (pa*pc+pa*pd+pb*pc+pb*pd == 1)
-    corry = eta*((vy>0 and pc==1)+(vy<0 and pd==1))*abs(vx)
+    corry = eta*((vy>0 and pc==1)+(vy<0 and pd==1))*abs(vx) 
     corrx = eta*((vx>0 and pa==1)+(vx<0 and pb==1))*abs(vy)
     vx += -corrx*svx+corry*svx
     vy += -corry*svy+corrx*svy
     affect(x,y,(vx,vy))
     
-def explore():
+def explore(): #This function interprets data from the pNS Network (the pNS Network only thinks, it needs an algorithm to interpret it ideas)
     global X,Y,APOS,N,NB_STEP,SCORE
     NB_STEP += 1
     if (X,Y) == APOS:
-        assert False #Pb (X,Y) = APOS - shouldn't occur - if you see this error your maze may be incorrect
-    if (X,Y) == END:
+        assert False #Pb (X,Y) = APOS - shouldn't occur - if you see this error your initialization values may be incorrect
+    if (X,Y) == END: #End the run and restart it
     	print("end")
         (X,Y) = START
         APOS = (0,1)
         SCORE.append(NB_STEP)
         NB_STEP = 0
-    #Leaving standing water area
+    #Leaving standing water area (it's an exception in the design of the algorithm for better performances) (cf report)
     l_remonte = [(X+a,Y+b) for a,b in move_list() if access(X+a,Y+b) != (0,0)]
     if l_remonte != []:
         remonte = l_remonte[0]
     else:
         remonte = None
         
-    solve((X,Y),APOS)
+    solve((X,Y),APOS) #Compute solutions of pNS Equations
     N += 1
+    #Interpret pNS Network information (cf report)
     (vx,vy) = access(X,Y)
     svx = sg(vx)
     svy = sg(vy)
@@ -257,7 +259,7 @@ def show(V):
 # * Tests *
 #
 #------------------------------
-def init():
+def init(): #Used for the animation
     pass
 
 SLOW = 0
