@@ -8,4 +8,4 @@ You'll need matplotlib library so as to visualise the trajectory of the agent.
 
 I've said in my report I would put online the database with 25k labyrinths but the file is too big to put it on github. So I put an other file with labyrinths with different dimensions. You can obviously use the generator to create other labyrinths.
 
-My mail address if you have questions or if something is not working correctly (everything works well on my computer): nicolas.yax@ens-paris-saclay.fr
+My mail address if you have questions or if anything doesn't work correctly: nicolas.yax@ens-paris-saclay.fr
